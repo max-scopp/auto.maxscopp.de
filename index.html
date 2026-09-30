@@ -393,14 +393,16 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
 .rain-copy { display: grid; gap: 16px; min-width: 0; }
 .punch { font-family: var(--f-display); font-weight: 600; font-variation-settings: "SOFT" 100; font-size: clamp(1.4rem, 2.6vw, 1.85rem); line-height: 1.2; color: var(--violet-ink); }
 .rain-note { color: var(--muted); font-size: 0.95rem; }
-.windshield { display: block; width: 100%; height: auto; border-radius: 20px; }
-.drop { transform-box: fill-box; transform-origin: center; opacity: 0; animation: bead 3.6s cubic-bezier(0.5, 0, 0.75, 0.3) infinite; animation-delay: var(--d); }
-@keyframes bead {
-  0% { opacity: 0; transform: translate(0, 0) scale(0.4); }
-  12%, 55% { opacity: 1; transform: translate(0, 0) scale(1); }
-  100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.7); }
+.rain-video { position: relative; margin: 0; aspect-ratio: 1; width: 100%; max-width: 560px; border-radius: 20px; overflow: hidden; background: #2c2931; }
+.rain-video video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.sound {
+  position: absolute; right: 14px; bottom: 14px; display: grid; place-items: center; width: 44px; height: 44px;
+  border: 0; border-radius: 999px; background: rgba(43, 37, 48, 0.55); color: #fff; cursor: pointer;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
 }
-@media (prefers-reduced-motion: reduce) { .drop { animation: none; opacity: 1; } }
+.sound svg { width: 20px; height: 20px; }
+.sound .on, .sound[aria-pressed="true"] .off { display: none; }
+.sound[aria-pressed="true"] .on { display: block; }
 @media (max-width: 880px) { .rain-grid { grid-template-columns: minmax(0, 1fr); } }
 
 /* Prices */
@@ -779,31 +781,13 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
         <p class="punch">Günstiger als Carglas.<br>Besser als Glaco.</p>
         <p class="rain-note">Gibt’s als Extra zu jedem Paket. Frag einfach danach.</p>
       </div>
-      <svg class="windshield" viewBox="0 0 480 300" role="img" aria-label="Blick durch eine versiegelte Windschutzscheibe bei Regen: die Tropfen perlen ab">
-            <defs>
-              <linearGradient id="ws-sky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#2a2140"/><stop offset=".55" stop-color="#5d4a86"/><stop offset="1" stop-color="#b98fc4"/>
-              </linearGradient>
-              <radialGradient id="ws-drop" cx=".45" cy=".45" r=".6">
-                <stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".7" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity=".8"/>
-              </radialGradient>
-              <clipPath id="ws-glass"><path d="M70 40Q240 22 410 40L452 232Q240 256 28 232Z"/></clipPath>
-              <filter id="ws-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
-            </defs>
-            <g clip-path="url(#ws-glass)">
-              <rect width="480" height="300" fill="url(#ws-sky)"/>
-              <path d="M0 176Q60 150 120 166T240 158T360 164T480 150V300H0Z" fill="#3b2f55"/>
-              <path d="M40 300L228 168H252L440 300Z" fill="#221b2e"/>
-              <path d="M238 176h4l2 14h-8zM236 200h8l3 22h-14zM232 236h16l5 40h-26z" fill="#3ad9c6" opacity=".7"/>
-              <rect x="226" y="160" width="28" height="12" rx="4" fill="#15111c"/>
-              <g filter="url(#ws-glow)"><circle cx="230" cy="166" r="3.5" fill="#ff5d6c"/><circle cx="250" cy="166" r="3.5" fill="#ff5d6c"/></g>
-              <circle cx="230" cy="166" r="1.8" fill="#ffb3ba"/><circle cx="250" cy="166" r="1.8" fill="#ffb3ba"/>
-              <path d="M90 40L200 40L120 232L40 232Z" fill="#fff" opacity=".05"/>
-              <g class="drop" style="--d:-0.78s;--tx:-34px;--ty:-77px"><circle cx="143" cy="168" r="5.9" fill="url(#ws-drop)"/><circle cx="140.8" cy="165.5" r="1.7" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-0.85s;--tx:30px;--ty:-78px"><circle cx="325" cy="186" r="5.4" fill="url(#ws-drop)"/><circle cx="323.0" cy="183.7" r="1.5" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-2.86s;--tx:-50px;--ty:-62px"><circle cx="96" cy="119" r="5.7" fill="url(#ws-drop)"/><circle cx="93.9" cy="116.8" r="1.6" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-2.66s;--tx:-27px;--ty:-95px"><circle cx="162" cy="98" r="3.4" fill="url(#ws-drop)"/><circle cx="161.2" cy="96.4" r="0.9" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-1.79s;--tx:38px;--ty:-72px"><circle cx="349" cy="156" r="3.3" fill="url(#ws-drop)"/><circle cx="347.6" cy="155.1" r="0.9" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-2.94s;--tx:-39px;--ty:-65px"><circle cx="129" cy="208" r="4.8" fill="url(#ws-drop)"/><circle cx="126.9" cy="206.0" r="1.3" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-1.23s;--tx:-38px;--ty:-79px"><circle cx="131" cy="204" r="5.1" fill="url(#ws-drop)"/><circle cx="129.4" cy="202.2" r="1.4" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-0.85s;--tx:-2px;--ty:-90px"><circle cx="236" cy="91" r="3.4" fill="url(#ws-drop)"/><circle cx="234.4" cy="89.4" r="0.9" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-2.72s;--tx:28px;--ty:-91px"><circle cx="321" cy="94" r="7.4" fill="url(#ws-drop)"/><circle cx="318.7" cy="91.3" r="2.1" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-1.71s;--tx:27px;--ty:-64px"><circle cx="316" cy="151" r="6.3" fill="url(#ws-drop)"/><circle cx="314.0" cy="148.6" r="1.8" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-1.47s;--tx:33px;--ty:-91px"><circle cx="335" cy="93" r="7.2" fill="url(#ws-drop)"/><circle cx="332.3" cy="90.3" r="2.0" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-1.39s;--tx:-14px;--ty:-95px"><circle cx="201" cy="131" r="4.9" fill="url(#ws-drop)"/><circle cx="199.2" cy="129.4" r="1.4" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-1.79s;--tx:-48px;--ty:-95px"><circle cx="103" cy="76" r="6.3" fill="url(#ws-drop)"/><circle cx="100.6" cy="74.1" r="1.8" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-2.19s;--tx:-1px;--ty:-68px"><circle cx="238" cy="146" r="6.4" fill="url(#ws-drop)"/><circle cx="235.3" cy="144.0" r="1.8" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-1.25s;--tx:6px;--ty:-66px"><circle cx="256" cy="157" r="4.0" fill="url(#ws-drop)"/><circle cx="255.0" cy="155.9" r="1.1" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-0.37s;--tx:43px;--ty:-71px"><circle cx="364" cy="115" r="5.8" fill="url(#ws-drop)"/><circle cx="361.8" cy="113.0" r="1.6" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-2.46s;--tx:-44px;--ty:-73px"><circle cx="114" cy="186" r="6.5" fill="url(#ws-drop)"/><circle cx="111.7" cy="184.2" r="1.8" fill="#fff" opacity=".85"/></g><g class="drop" style="--d:-3.56s;--tx:18px;--ty:-74px"><circle cx="291" cy="200" r="7.3" fill="url(#ws-drop)"/><circle cx="288.4" cy="196.9" r="2.0" fill="#fff" opacity=".85"/></g>
-            </g>
-            <path d="M0 0H480V300H0ZM70 40Q240 22 410 40L452 232Q240 256 28 232Z" fill="#17131d" fill-rule="evenodd"/>
-            <path d="M0 262Q240 238 480 262V300H0Z" fill="#221c2a"/>
-          </svg>
+      <figure class="rain-video">
+        <video id="rain-video" muted loop playsinline preload="none" poster="images/regen-poster.jpg" data-src="images/regen.mp4" aria-label="Fahrt im Regen: Die Tropfen perlen auf der versiegelten Windschutzscheibe ab"></video>
+        <button class="sound" type="button" aria-pressed="false" aria-label="Ton einschalten">
+          <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+          <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>
+        </button>
+      </figure>
     </div>
   </section>
 
@@ -1086,6 +1070,27 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
       document.addEventListener('themechange', function () { apply(true); });
       matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { apply(true); });
     });
+  })();
+
+  // Regen-Video: lädt erst in der Nähe des Bildschirms, spielt stumm, Ton per Knopf
+  (function () {
+    var video = document.getElementById('rain-video');
+    var sound = document.querySelector('.rain-video .sound');
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function load() { if (!video.src) video.src = video.dataset.src; }
+    function play() { load(); var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+    sound.addEventListener('click', function () {
+      var on = video.muted;
+      video.muted = !on;
+      sound.setAttribute('aria-pressed', String(on));
+      sound.setAttribute('aria-label', on ? 'Ton ausschalten' : 'Ton einschalten');
+      if (on) play();
+    });
+    if (!('IntersectionObserver' in window)) { if (!still) play(); return; }
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { if (!still || !video.muted) play(); }
+      else video.pause();
+    }, { rootMargin: '200px 0px' }).observe(video);
   })();
 
   // Lasche der Kontaktleiste: Klick hält sie offen, Escape schließt sie
