@@ -1,0 +1,38 @@
+/* Impressum + Datenschutz: gleiche Farben und Schriften wie die Startseite, ruhige Lesespalte */
+:root {
+  --bg: #f7f5f8; --surface: #ffffff; --ink: #2b2530; --muted: #675e6e; --line: #e4dee8;
+  --teal: #3ad9c6; --violet-ink: #6a43c0; --lilac: #f0eaf7;
+  --f-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --f-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #19161d; --surface: #231f28; --ink: #efeaf3; --muted: #b0a7b8; --line: #373040;
+    --teal: #5ee8d8; --violet-ink: #b69cf2; --lilac: #251e2f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #19161d; --surface: #231f28; --ink: #efeaf3; --muted: #b0a7b8; --line: #373040;
+  --teal: #5ee8d8; --violet-ink: #b69cf2; --lilac: #251e2f;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.65; }
+.wrap { max-width: 44rem; margin-inline: auto; padding-inline: clamp(16px, 4vw, 32px); }
+main { display: grid; gap: 28px; padding-block: clamp(40px, 7vw, 80px); }
+h1, h2 { margin: 0; font-family: var(--f-display); font-weight: 600; font-variation-settings: "SOFT" 100; letter-spacing: -0.015em; line-height: 1.1; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); }
+h2 { font-size: 1.3rem; }
+section { display: grid; gap: 8px; }
+p, ul { margin: 0; color: var(--muted); }
+ul { padding-left: 1.2em; display: grid; gap: 4px; }
+strong { color: var(--ink); font-weight: 650; }
+a { color: inherit; text-decoration-color: var(--teal); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+.back { justify-self: start; padding: 6px 14px; border-radius: 999px; background: var(--lilac); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding-block: 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+.foot nav { display: flex; gap: 20px; }
+.foot a[aria-current] { color: var(--ink); font-weight: 600; }
