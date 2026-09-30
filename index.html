@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Max Scopp Autoaufbereitung</title>
 <meta name="description" content="Mobile Autoaufbereitung: Ich komme zu dir. Schnell, pH-neutral und silikonfrei, innen hygienisch rein mit Dampfreiniger. 20 % Rabatt für Mamas mit Kindern unter 14.">
 <meta name="theme-color" content="#f7f5f8">
@@ -76,7 +76,7 @@ body {
 }
 /* Ein weicher Farbschimmer oben rechts */
 body::before {
-  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 100vh; z-index: -1; pointer-events: none;
   background: radial-gradient(50vw 44vw at 85% 0%, var(--glow), transparent 70%);
 }
 img { max-width: 100%; display: block; }
@@ -118,7 +118,7 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
 
 /* Floating navbar (wie auf max-scopp.github.io) */
 .top {
-  position: fixed; top: calc(16px + env(safe-area-inset-top, 0px)); left: 0; right: 0; z-index: 20;
+  position: fixed; top: 16px; left: 0; right: 0; z-index: 20;
   display: flex; justify-content: center; padding-inline: 12px; pointer-events: none;
 }
 .bar {
@@ -152,7 +152,8 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
 .theme button[aria-pressed="true"] { color: var(--ink); background: var(--chip); }
 .theme svg { width: 16px; height: 16px; }
 @media (max-width: 760px) {
-  .top { top: calc(10px + env(safe-area-inset-top, 0px)); }
+  /* Auf dem Handy scrollt die Leiste mit der Seite weg, statt mit der Browserleiste zu springen */
+  .top { position: absolute; top: 10px; }
   .nav, .bar-cta { display: none; }
 }
 
@@ -360,7 +361,8 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
 
 /* Contact */
 .contact { border-top: 1px solid var(--line); }
-.contact-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: end; }
+.reach { display: grid; gap: 24px; min-width: 0; }
 .me { display: grid; gap: 22px; min-width: 0; }
 .me-intro { display: flex; gap: 20px; align-items: center; }
 .me-intro img { width: 108px; height: 108px; flex: none; object-fit: cover; border-radius: 50%; }
@@ -371,28 +373,7 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
 .line dd { margin: 0; font-weight: 650; overflow-wrap: anywhere; }
 .line dd a { text-decoration-color: var(--teal); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .line dd span { display: block; font-weight: 400; font-size: 0.9rem; color: var(--muted); }
-.form {
-  display: grid; gap: 16px; padding: clamp(20px, 3.5vw, 32px);
-  border: 1px solid var(--line); border-radius: 18px; background: var(--surface);
-}
-.form-title { font-family: var(--f-display); font-weight: 600; font-variation-settings: "SOFT" 100; font-size: 1.45rem; }
-.field { display: grid; gap: 6px; }
-.field label { font-size: 0.92rem; font-weight: 600; }
-.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.form input, .form select, .form textarea {
-  width: 100%; min-height: 48px; padding: 0.65em 0.85em;
-  border: 1.5px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font: inherit;
-}
-.form textarea { min-height: 96px; resize: vertical; }
-.form input:focus, .form select:focus, .form textarea:focus {
-  outline: 3px solid color-mix(in srgb, var(--teal) 35%, transparent); outline-offset: 0; border-color: var(--teal);
-}
-.check { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; background: var(--lilac); font-size: 0.95rem; }
-.form .check input { width: 22px; height: 22px; min-height: 0; flex: none; margin: 2px 0 0; padding: 0; accent-color: var(--violet); }
-.form-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.form-note { font-size: 0.85rem; color: var(--muted); }
 @media (max-width: 880px) { .contact-grid { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 520px) { .row2 { grid-template-columns: minmax(0, 1fr); } }
 
 /* Footer + phone call bar */
 .foot { padding-block: 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
@@ -420,9 +401,9 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
 .callbar-body { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 4px 2px; }
 .callbar .short { display: none; }
 @media (max-width: 760px) {
-  body { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+  body { padding-bottom: 84px; }
   .callbar {
-    top: auto; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    top: auto; left: 12px; right: 12px; bottom: 12px;
     display: block; padding: 6px; border-radius: 999px;
   }
   .callbar, .callbar:hover, .callbar:focus-within, .callbar.is-open { transform: none; }
@@ -430,6 +411,7 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
   .callbar .short { display: inline; }
   .callbar-body { flex-direction: row; padding: 0; }
   .callbar-body .btn { flex: 1; }
+  .reach .cta { display: none; } /* die schwebende Leiste hat dieselben Knöpfe */
 }
 @media (prefers-reduced-motion: reduce) { .callbar, .callbar-tab .chev { transition: none; } }
 </style>
@@ -458,7 +440,7 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
       </button>
     </div>
-    <a class="bar-cta" href="tel:+491700000000">Anrufen</a>
+    <a class="bar-cta" href="tel:+4917655505700">Anrufen</a>
   </div>
 </header>
 
@@ -473,11 +455,11 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
         <div class="hero-copy">
           <p class="lead">Ich bin Max und mache mobile Autoaufbereitung. Du bleibst, wo du bist, ich komm mit allem, was ich brauche, in deine Einfahrt, an den Carport oder auf den Firmenparkplatz. <strong>Danach glänzt dein Auto außen und ist innen hygienisch rein.</strong> Zügig, pH-neutral und ohne Silikon. Und <a class="mama-link" href="#mamas">Mamas bekommen 20 % Rabatt</a>.</p>
           <div class="cta">
-            <a class="btn btn-teal" href="tel:+491700000000">
+            <a class="btn btn-teal" href="tel:+4917655505700">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>
-              0170 000 00 00
+              0176 5550 5700
             </a>
-            <a class="btn btn-line" href="https://wa.me/491700000000">Fotos per WhatsApp</a>
+            <a class="btn btn-line" href="https://wa.me/4917655505700">Fotos per WhatsApp</a>
           </div>
         </div>
         <figure class="shot">
@@ -833,52 +815,21 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
           <img src="images/portrait.svg" alt="Max Scopp (Platzhalterbild)" width="600" height="600" loading="lazy">
           <p>Ich bin Max. Ich mach Autos sauber, gründlich und ohne Schnickschnack. Und weil ich zu dir komme, musst du dafür nirgendwo hin.</p>
         </div>
+      </div>
+      <div class="reach">
         <dl class="lines">
-          <div class="line"><dt>Telefon</dt><dd><a href="tel:+491700000000">0170 000 00 00</a></dd></div>
-          <div class="line"><dt>WhatsApp</dt><dd><a href="https://wa.me/491700000000">0170 000 00 00</a><span>Am schnellsten. Gern mit Fotos.</span></dd></div>
+          <div class="line"><dt>Telefon</dt><dd><a href="tel:+4917655505700">0176 5550 5700</a></dd></div>
+          <div class="line"><dt>WhatsApp</dt><dd><a href="https://wa.me/4917655505700">0176 5550 5700</a><span>Am schnellsten. Gern mit Fotos.</span></dd></div>
           <div class="line"><dt>E-Mail</dt><dd><a href="mailto:m.scopp32@gmail.com">m.scopp32@gmail.com</a></dd></div>
         </dl>
+        <div class="cta">
+          <a class="btn btn-teal" href="tel:+4917655505700">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>
+            Anrufen
+          </a>
+          <a class="btn btn-line" href="https://wa.me/4917655505700">WhatsApp schreiben</a>
+        </div>
       </div>
-
-      <form class="form" id="anfrage">
-        <h3 class="form-title">Oder schreib mir kurz</h3>
-        <div class="row2">
-          <div class="field">
-            <label for="f-name">Dein Name</label>
-            <input id="f-name" name="name" autocomplete="name" required>
-          </div>
-          <div class="field">
-            <label for="f-car">Fahrzeug</label>
-            <input id="f-car" name="car" placeholder="z. B. VW Touran">
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-plan">Paket</label>
-          <select id="f-plan" name="plan">
-            <option>Weiß ich noch nicht</option>
-            <option>Frisch (ab 90 €)</option>
-            <option>Familie (ab 200 €)</option>
-            <option>Wie neu (ab 500 €)</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="f-where">Wo und wann?</label>
-          <input id="f-where" name="where" placeholder="z. B. Einfahrt zuhause, Samstagvormittag">
-        </div>
-        <div class="field">
-          <label for="f-msg">Was ist passiert? (optional)</label>
-          <textarea id="f-msg" name="msg" placeholder="z. B. Milch im Kindersitz ausgelaufen"></textarea>
-        </div>
-        <label class="check" for="f-mama">
-          <input id="f-mama" name="mama" type="checkbox">
-          <span>Ich bin Mama, mein Kind ist unter 14: bitte 20 % Mama-Rabatt berücksichtigen</span>
-        </label>
-        <div class="form-actions">
-          <button class="btn btn-teal" type="submit" value="whatsapp">Per WhatsApp senden</button>
-          <button class="btn btn-line" type="submit" value="mail">Per E-Mail senden</button>
-        </div>
-        <p class="form-note">Öffnet WhatsApp oder dein Mailprogramm mit der fertigen Nachricht. Abgeschickt wird erst, wenn du dort auf Senden tippst.</p>
-      </form>
     </div>
   </section>
 
@@ -901,8 +852,8 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
   </button>
   <div class="callbar-body" id="callbar-body">
-    <a class="btn btn-teal btn-sm" href="tel:+491700000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg><span class="long">0170 000 00 00</span><span class="short">Anrufen</span></a>
-    <a class="btn btn-line btn-sm" href="https://wa.me/491700000000">WhatsApp</a>
+    <a class="btn btn-teal btn-sm" href="tel:+4917655505700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg><span class="long">0176 5550 5700</span><span class="short">Anrufen</span></a>
+    <a class="btn btn-line btn-sm" href="https://wa.me/4917655505700">WhatsApp</a>
     <a class="btn btn-line btn-sm mail" href="mailto:m.scopp32@gmail.com">E-Mail</a>
   </div>
 </aside>
@@ -1063,6 +1014,13 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
     document.querySelectorAll('main > section').forEach(function (s) { spy.observe(s); });
   })();
 
+  // Auf Handys öffnet whatsapp:// direkt die App; wa.me bleibt für Desktop (Web/Desktop-App)
+  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (a) {
+      a.href = 'whatsapp://send?phone=' + a.getAttribute('href').replace('https://wa.me/', '');
+    });
+  }
+
   themeButtons.forEach(function (b) { b.addEventListener('click', function () { applyTheme(b.value); }); });
   applyTheme(document.documentElement.getAttribute('data-theme') || 'system');
 
@@ -1184,25 +1142,6 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
     }).observe(box);
   });
 
-  var PHONE = '491700000000';
-  var MAIL = 'm.scopp32@gmail.com';
-
-  document.getElementById('anfrage').addEventListener('submit', function (e) {
-    e.preventDefault();
-    function val(id) { return document.getElementById(id).value.trim(); }
-    var lines = ['Hallo Max, ich hätte gern ein Angebot.', ''];
-    lines.push('Name: ' + val('f-name'));
-    if (val('f-car')) lines.push('Fahrzeug: ' + val('f-car'));
-    lines.push('Paket: ' + val('f-plan'));
-    if (val('f-where')) lines.push('Wo und wann: ' + val('f-where'));
-    if (val('f-msg')) lines.push('Details: ' + val('f-msg'));
-    if (document.getElementById('f-mama').checked) lines.push('Mama-Rabatt: ja, bitte (20 %, Kind unter 14)');
-    var text = lines.join('\n');
-    var viaMail = e.submitter && e.submitter.value === 'mail';
-    window.location.href = viaMail
-      ? 'mailto:' + MAIL + '?subject=' + encodeURIComponent('Anfrage Autoaufbereitung') + '&body=' + encodeURIComponent(text)
-      : 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text);
-  });
 </script>
 </body>
 </html>
