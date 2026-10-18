@@ -1,21 +1,21 @@
 /* Impressum + Datenschutz: gleiche Farben und Schriften wie die Startseite, ruhige Lesespalte */
 :root {
-  --bg: #f7f5f8; --surface: #ffffff; --ink: #2b2530; --muted: #675e6e; --line: #e4dee8;
-  --teal: #3ad9c6; --violet-ink: #6a43c0; --lilac: #f0eaf7;
+  --bg: #f7f6f8; --surface: #fffefe; --ink: #29252f; --muted: #635c6c; --line: #e5e0e8;
+  --teal: #43c7b5; --violet-ink: #6647ad; --lilac: #f0ebf7;
   --f-display: "Fraunces", Georgia, "Times New Roman", serif;
   --f-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #19161d; --surface: #231f28; --ink: #efeaf3; --muted: #b0a7b8; --line: #373040;
-    --teal: #5ee8d8; --violet-ink: #b69cf2; --lilac: #251e2f;
+    --bg: #18151c; --surface: #221e27; --ink: #f2eef5; --muted: #b4aab9; --line: #393340;
+    --teal: #64d8c6; --violet-ink: #c2aef0; --lilac: #292330;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #19161d; --surface: #231f28; --ink: #efeaf3; --muted: #b0a7b8; --line: #373040;
-  --teal: #5ee8d8; --violet-ink: #b69cf2; --lilac: #251e2f;
+  --bg: #18151c; --surface: #221e27; --ink: #f2eef5; --muted: #b4aab9; --line: #393340;
+  --teal: #64d8c6; --violet-ink: #c2aef0; --lilac: #292330;
   color-scheme: dark;
 }
 

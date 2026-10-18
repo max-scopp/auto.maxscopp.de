@@ -7,7 +7,7 @@
 <meta name="description" content="Mobile Autoaufbereitung in Prüm und Umgebung: Ich komme zu dir. Innen und außen, pH-neutral, silikonfrei, hygienisch rein mit Dampf. 20 % Mama-Rabatt.">
 <meta name="author" content="Max Scopp">
 <link rel="canonical" href="https://auto.maxscopp.de/">
-<meta name="theme-color" content="#f7f5f8">
+<meta name="theme-color" content="#f7f6f8">
 <meta name="geo.region" content="DE-RP">
 <meta name="geo.placename" content="Prüm">
 <meta property="og:type" content="website">
@@ -118,25 +118,25 @@
 <style>
 /* Layout: calm, friendly single column — soft lilac-grey ground and plum-charcoal text; turquoise marks actions, violet marks the mama offer; soft serif headings, one handwritten signature */
 :root {
-  --bg: #f7f5f8;
-  --surface: #ffffff;
-  --ink: #2b2530;
-  --muted: #675e6e;
-  --line: #e4dee8;
-  --lilac: #f0eaf7;
-  --mint: #e2f8f4;
-  --teal: #3ad9c6;
+  --bg: #f7f6f8;
+  --surface: #fffefe;
+  --ink: #29252f;
+  --muted: #635c6c;
+  --line: #e5e0e8;
+  --lilac: #f0ebf7;
+  --mint: #e5f5f1;
+  --teal: #43c7b5;
   --on-teal: #10201e;
-  --teal-ink: #0d7c70;
-  --violet: #7650cc;
+  --teal-ink: #14786d;
+  --violet: #7053bd;
   --on-violet: #ffffff;
-  --violet-ink: #6a43c0;
+  --violet-ink: #6647ad;
   --ph-dim: 0.5;
   --ph-on: 1;
-  --chip: #ece5f5;
-  --hover: rgb(118 80 204 / 0.06);
-  --glow: rgb(118 80 204 / 0.1);
-  --lg-tint: 255 255 255;
+  --chip: #ece6f3;
+  --hover: rgb(112 83 189 / 0.06);
+  --glow: rgb(112 83 189 / 0.1);
+  --lg-tint: 255 254 255;
   --lg-tint-a: 0.34;
 
   --f-display: "Fraunces", Georgia, "Times New Roman", serif;
@@ -146,18 +146,18 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #19161d; --surface: #231f28; --ink: #efeaf3; --muted: #b0a7b8; --line: #373040;
-    --lilac: #251e2f; --mint: #15292b; --teal: #5ee8d8; --on-teal: #0d1d1b; --teal-ink: #72ecdd;
-    --violet: #7a55d4; --on-violet: #ffffff; --violet-ink: #b69cf2; --ph-dim: 0.4; --ph-on: 0.9;
-    --chip: #2c2536; --hover: rgb(182 156 242 / 0.08); --glow: rgb(167 139 250 / 0.08); --lg-tint: 32 27 40; --lg-tint-a: 0.46;
+    --bg: #18151c; --surface: #221e27; --ink: #f2eef5; --muted: #b4aab9; --line: #393340;
+    --lilac: #292330; --mint: #192c2b; --teal: #64d8c6; --on-teal: #10201e; --teal-ink: #7be2d3;
+    --violet: #8064cc; --on-violet: #ffffff; --violet-ink: #c2aef0; --ph-dim: 0.4; --ph-on: 0.9;
+    --chip: #302938; --hover: rgb(194 174 240 / 0.08); --glow: rgb(167 139 250 / 0.08); --lg-tint: 34 30 39; --lg-tint-a: 0.46;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #19161d; --surface: #231f28; --ink: #efeaf3; --muted: #b0a7b8; --line: #373040;
-  --lilac: #251e2f; --mint: #15292b; --teal: #5ee8d8; --on-teal: #0d1d1b; --teal-ink: #72ecdd;
-  --violet: #7a55d4; --on-violet: #ffffff; --violet-ink: #b69cf2; --ph-dim: 0.4; --ph-on: 0.9;
-    --chip: #2c2536; --hover: rgb(182 156 242 / 0.08); --glow: rgb(167 139 250 / 0.08); --lg-tint: 32 27 40; --lg-tint-a: 0.46;
+  --bg: #18151c; --surface: #221e27; --ink: #f2eef5; --muted: #b4aab9; --line: #393340;
+  --lilac: #292330; --mint: #192c2b; --teal: #64d8c6; --on-teal: #10201e; --teal-ink: #7be2d3;
+  --violet: #8064cc; --on-violet: #ffffff; --violet-ink: #c2aef0; --ph-dim: 0.4; --ph-on: 0.9;
+  --chip: #302938; --hover: rgb(194 174 240 / 0.08); --glow: rgb(167 139 250 / 0.08); --lg-tint: 34 30 39; --lg-tint-a: 0.46;
   color-scheme: dark;
 }
 
@@ -261,7 +261,7 @@ h3, h4 { margin: 0; font-size: 1.15rem; font-weight: 650; line-height: 1.3; }
 .hero h1 { font-size: clamp(2.6rem, 6.8vw, 5.2rem); line-height: 1.02; letter-spacing: -0.02em; }
 .squiggle {
   padding-bottom: 0.06em;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 16' preserveAspectRatio='none'%3E%3Cpath d='M3 11C40 4 80 3 112 9S170 14 197 5' fill='none' stroke='%233ad9c6' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") left bottom / 100% 0.26em no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 16' preserveAspectRatio='none'%3E%3Cpath d='M3 11C40 4 80 3 112 9S170 14 197 5' fill='none' stroke='%2343c7b5' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") left bottom / 100% 0.26em no-repeat;
 }
 .hero-grid {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
